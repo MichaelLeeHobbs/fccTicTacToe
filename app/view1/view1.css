@@ -1,0 +1,51 @@
+.gameContainer {
+    background-color: black;
+    height: 450px;
+    width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+.cell {
+    display: inline-flex;
+    width: 148px;
+    height: 148px;
+    margin: 0;
+}
+.cell p {
+    font-size: 100px;
+    text-align: center;
+    color: white;
+    margin: auto;
+    font-weight: bold;
+
+}
+
+.cTopLeft {
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+
+}
+.cTopCenter {
+    border-bottom: 2px solid white;
+}
+.cTopRight {
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+
+}
+.cCenter {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+.cBotLeft {
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+}
+.cBotCenter {
+    border-top: 2px solid white;
+}
+.cBotRight {
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+}
