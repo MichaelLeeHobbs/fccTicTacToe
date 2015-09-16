@@ -1,4 +1,5 @@
 .gameContainer {
+    position: relative;
     background-color: black;
     height: 450px;
     width: 450px;
@@ -48,4 +49,18 @@
 .cBotRight {
     border-top: 2px solid white;
     border-left: 2px solid white;
+}
+
+.results {
+    background: #333;
+    color: red;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    top: -400px;
+    text-align: center;
+    display: none;
+    font-size: 48px;
+    padding-top: 50px;
 }

@@ -10,6 +10,8 @@ angular.module('myApp.view1', ['ngRoute'])
     }])
 
     .controller('View1Ctrl', ['$scope', '$timeout', function ($scope, $timeout) {
+        $scope.resultstyle = "none";
+        $scope.gameresults = "";
         var playerPiece = 'x';
         var cpuPiece = 'o';
         var lastPlayer = '';
@@ -85,15 +87,27 @@ angular.module('myApp.view1', ['ngRoute'])
         };
         var win = function () {
 
-            // do something
-            console.log(lastPlayer + ' wins!');
-
-            state = init;
+            // show results
+            showResults(lastPlayer + ' wins!');
 
             // pause before init that way player sees x or o drawn before board is cleared
+            $timeout(hideResults, 1000);
+            state = init;
             $timeout(state, 1000);
 
         };
+        var showResults = function (result) {
+            console.log('results: ' + result);
+            $scope.gameresults = result;
+            $scope.resultstyle = "block";
+            console.log('show end');
+        };
+        var hideResults = function () {
+            console.log('hide');
+            $scope.resultstyle = "none";
+            console.log('hide end');
+        };
+
         var draw = function () {
             // do something
 
