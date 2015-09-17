@@ -11,7 +11,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
     .controller('View1Ctrl', ['$scope', '$timeout', 'ticTacToeGame', function ($scope, $timeout, game) {
         'use strict';
-        console.log('view 1 ctrler');
+
 
         var playerPiece = 'o',
             cpuPiece = 'x';
@@ -53,14 +53,14 @@ angular.module('myApp.view1', ['ngRoute'])
             $scope.grid = game.getGrid();
         };
         var showResults = function () {
-            console.log('results: ' + $scope.result);
+
             $scope.resultstyle = "block";
-            console.log('show end');
+
         };
         var hideResults = function () {
-            console.log('hide');
+
             $scope.resultstyle = "none";
-            console.log('hide end');
+
         };
 
     }]);

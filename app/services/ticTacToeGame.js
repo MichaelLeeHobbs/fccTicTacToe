@@ -47,21 +47,21 @@ angular.module('myApp.services')
 
         var checkForWin = function () {
             // rows
-            console.log('checkcing rows for win');
+
             for (var i = 0; i < 3; i++) {
                 if (grid[i][0] !== '' && grid[i][0] === grid[i][1] && grid[i][0] === grid[i][2]) {
                     return true;
                 }
             }
             // column
-            console.log('checking columns for win');
+
             for (i = 0; i < 3; i++) {
                 if (grid[0][i] !== '' && grid[0][i] === grid[1][i] && grid[0][i] === grid[2][i]) {
                     return true;
                 }
             }
             // diagonal
-            console.log('checking rows for diagonal');
+
             if (grid[0][0] !== '' && grid[0][0] === grid[1][1] && grid[0][0] === grid[2][2]) {
                 return true;
             }
@@ -99,7 +99,7 @@ angular.module('myApp.services')
             state();
         };
         var cpuTurn = function () {
-            console.log('cpuAI');
+
             var cpuMove = cpuAI.calculateMove(cpuPiece, playerPiece, grid);
             grid[cpuMove[0]][cpuMove[1]] = cpuPiece;
             moves++;

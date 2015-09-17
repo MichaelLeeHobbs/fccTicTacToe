@@ -7,7 +7,7 @@ angular.module('myApp.services', [])
         'use strict';
         var ticTacToeAI = {
             twoInRow: function (grid, piece) {
-                console.log('twoInRow');
+
                 // scan for two in a row
                 for (var i = 0; i < 3; i++) {
                     if (grid[i][0] === piece && grid[i][0] === grid[i][1] && grid[i][2] === '') {
@@ -57,7 +57,7 @@ angular.module('myApp.services', [])
 
             },
             fork: function (grid, piece) {
-                console.log('fork');
+
                 //diag fork
                 if (grid[0][0] === piece && grid[2][2] === piece && grid[0][2] === '') {
                     return [0, 2];
@@ -102,7 +102,7 @@ angular.module('myApp.services', [])
 
             },
             blockFork: function (grid, piece) {
-                console.log('block fork');
+
                 //diag fork - if they are trying to diag fork us then we have the center
                 if ((grid[0][0] === piece && grid[2][2] === piece) || (grid[0][2] === piece && grid[2][0] === piece)) {
                     if (grid[0][1] === '') {
@@ -123,14 +123,14 @@ angular.module('myApp.services', [])
 
             },
             center: function (grid) {
-                console.log('center');
+
                 if (grid[1][1] === '') {
                     return [1, 1];
                 }
             },
             // if player has corner then play opposite corner
             opCorner: function (grid, playerPiece) {
-                console.log('opCorner');
+
                 if (grid[0][0] === playerPiece && grid[2][2] === '') {
                     return [2, 2];
                 }
@@ -145,7 +145,7 @@ angular.module('myApp.services', [])
                 }
             },
             emptyCorner: function (grid) {
-                console.log('emptyCorner');
+
                 if (grid[0][0] === '') {
                     return [0, 0];
                 }
@@ -160,7 +160,7 @@ angular.module('myApp.services', [])
                 }
             },
             emptySide: function (grid) {
-                console.log('emptySide');
+
                 if (grid[0][1] === '') {
                     return [0, 1];
                 }
