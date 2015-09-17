@@ -16,10 +16,21 @@ angular.module('myApp.view1', ['ngRoute'])
         var playerPiece = 'o',
             cpuPiece = 'x';
         $scope.resultstyle = "none";
-        game.start(playerPiece, cpuPiece);
-        $scope.grid = game.getGrid();
+        $scope.choosestyle = 'block';
 
-        $scope.cellClick = function (x, y) {
+        $scope.choose = function (piece) {
+            playerPiece = piece;
+            if (piece === 'o') {
+                cpuPiece = 'x';
+            } else {
+                cpuPiece = 'o';
+            }
+            game.start(playerPiece, cpuPiece);
+            $scope.cellClick = input;
+            $scope.choosestyle = 'none';
+        };
+
+        var input = function (x, y) {
             game.playerMove(x, y);
             $scope.grid = game.getGrid();
             $scope.gameresults = game.getResult();
@@ -32,10 +43,11 @@ angular.module('myApp.view1', ['ngRoute'])
             // show results
             showResults();
 
-            // pause before init that way player sees x or o drawn before board is cleared
+            // pause before restart that way player sees x or o drawn before board is cleared
             $timeout(hideResults, 1000);
             $timeout(restart, 1000);
         };
+        // auto restart
         var restart = function () {
             game.start(playerPiece, cpuPiece);
             $scope.grid = game.getGrid();
