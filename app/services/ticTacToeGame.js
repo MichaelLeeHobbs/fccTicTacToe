@@ -72,7 +72,7 @@ angular.module('myApp.services')
         };
 
         // states
-        var init = function (playerPiece, cpuPiece) {
+        var init = function () {
             grid = [
                 ['', '', ''],
                 ['', '', ''],
