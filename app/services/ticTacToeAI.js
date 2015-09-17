@@ -1,4 +1,4 @@
-/*global require, define, angular, console*/
+/*global angular, console*/
 // http://stackoverflow.com/questions/125557/what-algorithm-for-a-tic-tac-toe-game-can-i-use-to-determine-the-best-move-for
 
 angular.module('myApp.services', [])
@@ -6,47 +6,6 @@ angular.module('myApp.services', [])
 
         'use strict';
         var ticTacToeAI = {
-            /*
-             calulateMove: function (cpuPiece, playerPiece, grid) {
-             // win
-             var move = cpu.twoInRow(cpuPiece);
-             // block win
-             if (move === undefined) {
-             move = cpu.twoInRow(playerPiece);
-             }
-             // fork
-             if (move === undefined) {
-             move = cpu.fork(cpuPiece);
-             }
-             // block fork
-             if (move === undefined) {
-             move = cpu.blockFork(playerPiece);
-             }
-             // center
-             if (move === undefined) {
-             move = cpu.center();
-             }
-             // opposite corner
-             if (move === undefined) {
-             move = cpu.opCorner(playerPiece);
-             }
-             // empty corner
-             if (move === undefined) {
-             move = cpu.emptyCorner();
-             }
-             // empty side
-             if (move === undefined) {
-             move = cpu.emptySide();
-             }
-             if (move === undefined) {
-             // draw
-
-             }
-             grid[move[0]][move[1]] = cpuPiece;
-             $scope.grid = grid;
-             moves++;
-
-             },*/
             twoInRow: function (grid, piece) {
                 console.log('twoInRow');
                 // scan for two in a row
@@ -217,7 +176,6 @@ angular.module('myApp.services', [])
             }
         };
 
-
         return {
             calculateMove: function (cpuPiece, playerPiece, grid) {
                 // win
@@ -253,10 +211,6 @@ angular.module('myApp.services', [])
                 // if (move === undefined) then grid is in draw state
 
                 return move;
-                //grid[move[0]][move[1]] = cpuPiece;
-                //$scope.grid = grid;
-                //moves++;
-
             }
         };
     });
