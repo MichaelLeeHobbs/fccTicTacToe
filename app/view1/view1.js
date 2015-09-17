@@ -41,8 +41,12 @@ angular.module('myApp.view1', ['ngRoute'])
             }
             // diagonal
             console.log('checking rows for diagonal');
-            if (grid[0][0] !== '' && grid[0][0] === grid[1][1] && grid[0][0] === grid[2][2]) {return true;}
-            if (grid[0][2] !== '' && grid[0][2] === grid[1][1] && grid[0][2] === grid[2][0]) {return true;}
+            if (grid[0][0] !== '' && grid[0][0] === grid[1][1] && grid[0][0] === grid[2][2]) {
+                return true;
+            }
+            if (grid[0][2] !== '' && grid[0][2] === grid[1][1] && grid[0][2] === grid[2][0]) {
+                return true;
+            }
             return false;
         };
 
@@ -123,13 +127,13 @@ angular.module('myApp.view1', ['ngRoute'])
             ['', '', '']
         ];
         $scope.cellClick = function (x, y) {
-            if (state === playerTurn) {
-                if (grid[x][y] === '') {
+            if (grid[x][y] === '') {
+                if (state === playerTurn) {
                     grid[x][y] = playerPiece;
                     $scope.grid = grid;
                     moves++;
+                    state();
                 }
-                state();
             }
         };
 
@@ -227,34 +231,66 @@ angular.module('myApp.view1', ['ngRoute'])
             fork: function (piece) {
                 console.log('fork');
                 //diag fork
-                if (grid[0][0] === piece && grid[2][2] === piece && grid[0][2] === '') {return [0, 2];}
-                if (grid[0][0] === piece && grid[2][2] === piece && grid[2][0] === '') {return [2, 0];}
-                if (grid[0][2] === piece && grid[2][0] === piece && grid[0][0] === '') {return [0, 0];}
-                if (grid[0][2] === piece && grid[2][0] === piece && grid[0][0] === '') {return [2, 2];}
+                if (grid[0][0] === piece && grid[2][2] === piece && grid[0][2] === '') {
+                    return [0, 2];
+                }
+                if (grid[0][0] === piece && grid[2][2] === piece && grid[2][0] === '') {
+                    return [2, 0];
+                }
+                if (grid[0][2] === piece && grid[2][0] === piece && grid[0][0] === '') {
+                    return [0, 0];
+                }
+                if (grid[0][2] === piece && grid[2][0] === piece && grid[0][0] === '') {
+                    return [2, 2];
+                }
 
                 // row fork
-                if (grid[0][0] === piece && grid[0][2] === piece && grid[2][0] === '') {return [2, 0];}
-                if (grid[0][0] === piece && grid[0][2] === piece && grid[2][2] === '') {return [2, 2];}
-                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][0] === '') {return [0, 0];}
-                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][2] === '') {return [0, 2];}
+                if (grid[0][0] === piece && grid[0][2] === piece && grid[2][0] === '') {
+                    return [2, 0];
+                }
+                if (grid[0][0] === piece && grid[0][2] === piece && grid[2][2] === '') {
+                    return [2, 2];
+                }
+                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][0] === '') {
+                    return [0, 0];
+                }
+                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][2] === '') {
+                    return [0, 2];
+                }
 
                 // column fork
-                if (grid[0][0] === piece && grid[2][0] === piece && grid[2][0] === '') {return [0, 2];}
-                if (grid[0][0] === piece && grid[2][0] === piece && grid[2][2] === '') {return [2, 2];}
-                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][0] === '') {return [0, 0];}
-                if (grid[2][0] === piece && grid[2][2] === piece && grid[2][0] === '') {return [2, 0];}
+                if (grid[0][0] === piece && grid[2][0] === piece && grid[2][0] === '') {
+                    return [0, 2];
+                }
+                if (grid[0][0] === piece && grid[2][0] === piece && grid[2][2] === '') {
+                    return [2, 2];
+                }
+                if (grid[2][0] === piece && grid[2][2] === piece && grid[0][0] === '') {
+                    return [0, 0];
+                }
+                if (grid[2][0] === piece && grid[2][2] === piece && grid[2][0] === '') {
+                    return [2, 0];
+                }
 
             },
             blockFork: function (piece) {
                 console.log('block fork');
                 //diag fork - if they are trying to diag fork us then we have the center
-                if (   (grid[0][0] === piece && grid[2][2] === piece)
-                    || (grid[0][2] === piece && grid[2][0] === piece) ) {
+                if ((grid[0][0] === piece && grid[2][2] === piece)
+                    || (grid[0][2] === piece && grid[2][0] === piece)) {
 
-                    if (grid[0][1] === '') {return [0,1];}
-                    if (grid[1][0] === '') {return [1,0];}
-                    if (grid[1][2] === '') {return [1,2];}
-                    if (grid[2][1] === '') {return [2,1];}
+                    if (grid[0][1] === '') {
+                        return [0, 1];
+                    }
+                    if (grid[1][0] === '') {
+                        return [1, 0];
+                    }
+                    if (grid[1][2] === '') {
+                        return [1, 2];
+                    }
+                    if (grid[2][1] === '') {
+                        return [2, 1];
+                    }
                 }
                 // row / column fork will be handled by center and is only possible if center is open
 
@@ -262,29 +298,55 @@ angular.module('myApp.view1', ['ngRoute'])
             },
             center: function () {
                 console.log('center');
-                if (grid[1][1] === '') { return [1,1];}
+                if (grid[1][1] === '') {
+                    return [1, 1];
+                }
             },
             // if player has corner then play opposite corner
             opCorner: function (playerPiece) {
                 console.log('opCorner');
-                if (grid[0][0] === playerPiece && grid[2][2] === '') { return [2,2];}
-                if (grid[0][2] === playerPiece && grid[2][0] === '') { return [2,0];}
-                if (grid[2][0] === playerPiece && grid[0][2] === '') { return [0,2];}
-                if (grid[2][2] === playerPiece && grid[0][0] === '') { return [0,0];}
+                if (grid[0][0] === playerPiece && grid[2][2] === '') {
+                    return [2, 2];
+                }
+                if (grid[0][2] === playerPiece && grid[2][0] === '') {
+                    return [2, 0];
+                }
+                if (grid[2][0] === playerPiece && grid[0][2] === '') {
+                    return [0, 2];
+                }
+                if (grid[2][2] === playerPiece && grid[0][0] === '') {
+                    return [0, 0];
+                }
             },
             emptyCorner: function () {
                 console.log('emptyCorner');
-                if (grid[0][0] === '') { return [0,0];}
-                if (grid[0][2] === '') { return [0,2];}
-                if (grid[2][0] === '') { return [2,0];}
-                if (grid[2][2] === '') { return [2,2];}
+                if (grid[0][0] === '') {
+                    return [0, 0];
+                }
+                if (grid[0][2] === '') {
+                    return [0, 2];
+                }
+                if (grid[2][0] === '') {
+                    return [2, 0];
+                }
+                if (grid[2][2] === '') {
+                    return [2, 2];
+                }
             },
             emptySide: function () {
                 console.log('emptySide');
-                if (grid[0][1] === '') { return [0,1];}
-                if (grid[1][0] === '') { return [1,0];}
-                if (grid[1][2] === '') { return [1,2];}
-                if (grid[2][1] === '') { return [2,1];}
+                if (grid[0][1] === '') {
+                    return [0, 1];
+                }
+                if (grid[1][0] === '') {
+                    return [1, 0];
+                }
+                if (grid[1][2] === '') {
+                    return [1, 2];
+                }
+                if (grid[2][1] === '') {
+                    return [2, 1];
+                }
             }
         };
 
