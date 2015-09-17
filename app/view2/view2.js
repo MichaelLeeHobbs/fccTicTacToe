@@ -1,5 +1,5 @@
 'use strict';
-
+/*global require, define, angular, console*/
 angular.module('myApp.view2', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
